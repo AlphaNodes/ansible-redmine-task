@@ -1,0 +1,30 @@
+# defaults file for redmine_tasks
+---
+
+# if defined, only this task is running
+# possible values: helpdesk, receive, recur-tasks, reminder
+redmine_task_name: ''
+
+redmine_task_instance: redmine
+redmine_task_user: '{{ redmine_task_instance }}'
+redmine_task_dir: '/srv/{{ redmine_task_instance }}'
+
+# URL to Redmine (without backslash)
+redmine_helpdesk_mailer_url: ''
+# Enable WS for incoming emails and genertate API key
+# see https://www.redminecrm.com/projects/helpdesk/pages/6
+redmine_helpdesk_mailer_key: ''
+# for basic auth
+redmine_helpdesk_mailer_auth_user:
+redmine_helpdesk_mailer_auth_password:
+
+redmine_task_reminder_day: 7
+
+redmine_receive_mails_imap_host: ''
+redmine_receive_mails_imap_user: ''
+redmine_receive_mails_imap_password: ''
+redmine_receive_mails_imap_port: 993
+redmine_receive_mails_imap_ssl: 'true'
+redmine_receive_mails_imap_allow_overwride: 'status,priority,assigned_to,estimated_hours,done_ratio,category,fixed_version,due_date,start_date'
+
+rails_env: production

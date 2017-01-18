@@ -1,0 +1,27 @@
+- fail:
+    msg: 'redmine_receive_mails_imap_host is missing'
+  when: redmine_receive_mails_imap_host == ''
+
+- fail:
+    msg: 'redmine_receive_mails_imap_user is missing'
+  when: redmine_receive_mails_imap_user == ''
+
+- fail:
+    msg: 'redmine_receive_mails_imap_password is missing'
+  when: redmine_receive_mails_imap_password == ''
+
+- name: Receive mails
+  shell: bash -lc "bundle exec rake redmine:email:receive_imap host={{ redmine_receive_mails_imap_host }} username={{ redmine_receive_mails_imap_user }} password={{ redmine_receive_mails_imap_password }} port={{ redmine_receive_mails_imap_port }} ssl={{ redmine_receive_mails_imap_ssl }} allow_override='{{ redmine_receive_mails_imap_allow_overwride }}'"
+  args:
+    chdir: '{{ redmine_task_dir }}'
+  become: "{{ 'true' if redmine_task_user != '' else 'false' }}"
+  become_user: '{{ redmine_task_user | default(omit) }}'
+  register: receive
+  changed_when: receive.stdout_lines | length
+  environment:
+    RAILS_ENV: '{{ rails_env }}'
+    PATH: '/usr/local/bin:/usr/bin:/bin:{{ redmine_task_dir }}/.rvm/bin'
+
+- name: Output of receive
+  debug: var=receive.stdout_lines
+  when: receive.changed
