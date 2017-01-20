@@ -6,7 +6,7 @@
     msg: 'redmine_helpdesk_mailer_key is missing'
   when: redmine_helpdesk_mailer_key == ''
 
-- name: Poll mails
+- name: Poll helpdesk mails
   uri:
     url: "{{ redmine_helpdesk_mailer_url }}/helpdesk_mailer/get_mail?key={{ redmine_helpdesk_mailer_key }}"
     force_basic_auth: "{{ 'yes' if redmine_helpdesk_mailer_auth_user is defined else 'no' }}"
