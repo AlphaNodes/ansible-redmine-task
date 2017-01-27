@@ -20,11 +20,30 @@ redmine_helpdesk_mailer_auth_password:
 
 redmine_task_reminder_day: 7
 
-redmine_receive_mails_imap_host: ''
-redmine_receive_mails_imap_user: ''
-redmine_receive_mails_imap_password: ''
-redmine_receive_mails_imap_port: 993
-redmine_receive_mails_imap_ssl: 'true'
-redmine_receive_mails_imap_allow_overwride: 'status,priority,assigned_to,estimated_hours,done_ratio,category,fixed_version,due_date,start_date'
+# redmine_receive_mails:
+#  - name: Redmine IMAP account
+#    host: 192.168.0.1
+#    user: noreply
+#    password: tryme
+#    # imap or pop3
+#    protocol: imap
+#    delete_unprocessed: yes
+#    allow_override: 'priority,tracker,project,category'
+
+redmine_receive_mails: []
+
+# redmine_receive_mails defaults
+redmine_receive_mails_host: ''
+redmine_receive_mails_user: ''
+redmine_receive_mails_password: ''
+redmine_receive_mails_protocol: imap
+redmine_receive_mails_port: 993
+redmine_receive_mails_ssl: 'true'
+redmine_receive_mails_options: ''
+redmine_receive_mails_allow_override: 'status,priority,assigned_to,estimated_hours,done_ratio,category,fixed_version,due_date,start_date'
 
 rails_env: production
+
+# if sync_master is defined, task will be skipped
+# (can be used in replication environments)
+#sync_master: anything

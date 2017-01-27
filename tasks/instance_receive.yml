@@ -1,0 +1,40 @@
+- set_fact: mails_host="{{ instance.host | default(redmine_receive_mails_host) }}"
+- set_fact: mails_user="{{ instance.user | default(redmine_receive_mails_user) }}"
+- set_fact: mails_password="{{ instance.password | default(redmine_receive_mails_password) }}"
+- set_fact: mails_protocol="{{ instance.host | default(redmine_receive_mails_protocol) }}"
+- set_fact: mails_port="{{ instance.host | default(redmine_receive_mails_port) }}"
+- set_fact: mails_ssl="{{ instance.host | default(redmine_receive_mails_ssl) }}"
+- set_fact: mails_allow_override="{{ instance.host | default(redmine_receive_mails_allow_override) }}"
+- set_fact: mails_options="{{ instance.host | default(redmine_receive_mails_options) }}"
+
+- fail:
+    msg: 'host is missing for {{ instance.name }}'
+  when: mails_host == ''
+
+- fail:
+    msg: 'user is missing for {{ instance.name }}'
+  when: mails_user == ''
+
+- fail:
+    msg: 'password is missing for {{ instance.name }}'
+  when: mails_password == ''
+
+- fail:
+    msg: 'unknown prococol for for {{ instance.name }}'
+  when: mails_protocol == '' or (mails_protocol != 'imap' and mails_protocol != 'pop3')
+
+- name: 'Receive mails for {{ instance.name }}'
+  shell: bash -lc "bundle exec rake redmine:email:receive_{{ mails_protocol }} host={{ mails_host }} username={{ mails_user }} password={{ mails_password }} port={{ mails_port }} ssl={{ mails_ssl }} allow_override='{{ mails_allow_override }}'{{ '' if mails_options == '' else ' ' + mails_options }}"
+  args:
+    chdir: '{{ redmine_task_dir }}'
+  become: "{{ 'true' if redmine_task_user != '' else 'false' }}"
+  become_user: '{{ redmine_task_user | default(omit) }}'
+  register: receive
+  changed_when: receive.stdout_lines | length
+  environment:
+    RAILS_ENV: '{{ rails_env }}'
+    PATH: '/usr/local/bin:/usr/bin:/bin:{{ redmine_task_dir }}/.rvm/bin'
+
+- name: 'Output of receive for {{ instance.name }}'
+  debug: var=receive.stdout_lines
+  when: receive.changed
