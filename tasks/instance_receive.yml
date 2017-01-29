@@ -1,11 +1,11 @@
 - set_fact: mails_host="{{ instance.host | default(redmine_receive_mails_host) }}"
 - set_fact: mails_user="{{ instance.user | default(redmine_receive_mails_user) }}"
 - set_fact: mails_password="{{ instance.password | default(redmine_receive_mails_password) }}"
-- set_fact: mails_protocol="{{ instance.host | default(redmine_receive_mails_protocol) }}"
-- set_fact: mails_port="{{ instance.host | default(redmine_receive_mails_port) }}"
-- set_fact: mails_ssl="{{ instance.host | default(redmine_receive_mails_ssl) }}"
-- set_fact: mails_allow_override="{{ instance.host | default(redmine_receive_mails_allow_override) }}"
-- set_fact: mails_options="{{ instance.host | default(redmine_receive_mails_options) }}"
+- set_fact: mails_protocol="{{ instance.protocol | default(redmine_receive_mails_protocol) }}"
+- set_fact: mails_port="{{ instance.port | default(redmine_receive_mails_port) }}"
+- set_fact: mails_ssl="{{ instance.ssl | default(redmine_receive_mails_ssl) }}"
+- set_fact: mails_allow_override="{{ instance.allow_override | default(redmine_receive_mails_allow_override) }}"
+- set_fact: mails_options="{{ instance.options | default(redmine_receive_mails_options) }}"
 
 - fail:
     msg: 'host is missing for {{ instance.name }}'
