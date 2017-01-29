@@ -38,7 +38,7 @@ redmine_receive_mails_user: ''
 redmine_receive_mails_password: ''
 redmine_receive_mails_protocol: imap
 redmine_receive_mails_port: 993
-redmine_receive_mails_ssl: 'true'
+redmine_receive_mails_ssl: yes
 redmine_receive_mails_options: ''
 redmine_receive_mails_allow_override: 'status,priority,assigned_to,estimated_hours,done_ratio,category,fixed_version,due_date,start_date'
 
