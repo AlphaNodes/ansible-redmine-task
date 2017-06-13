@@ -1,0 +1,10 @@
+- name: 'Run maintenance tasks {{ task }}'
+  shell: bash -lc "bundle exec rake {{ task }}"
+  args:
+    chdir: '{{ redmine_task_dir }}'
+  become: "{{ 'true' if redmine_task_user != '' else 'false' }}"
+  become_user: '{{ redmine_task_user | default(omit) }}'
+  register: task_rc
+  environment:
+    RAILS_ENV: '{{ rails_env }}'
+    PATH: '/usr/local/bin:/usr/bin:/bin:{{ redmine_task_dir }}/.rvm/bin'

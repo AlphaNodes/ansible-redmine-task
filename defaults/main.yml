@@ -47,3 +47,9 @@ rails_env: production
 # if sync_master is defined, task will be skipped
 # (can be used in replication environments)
 #sync_master: anything
+
+# see https://www.redmine.org/projects/redmine/wiki/RedmineRake
+redmine_maintenance_tasks:
+  - 'redmine:attachments:prune'
+  - 'redmine:tokens:prune'
+#  - 'redmine:watchers:prune'

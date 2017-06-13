@@ -6,6 +6,7 @@ Run Redmine tasks for an installed redmine (rake tasks)
 - receive helpdesk mails (redmine_contacts)
 - receive redmine mails
 - create recurrent tasks (https://www.redmine.org/plugins/recurring-tasks)
+- maintenance tasks (see https://www.redmine.org/projects/redmine/wiki/RedmineRake)
 
 ## Dependencies
 
