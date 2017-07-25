@@ -1,6 +1,6 @@
 - include: instance.yml
   when: >
-    redmine_instances is defined and redmine_instances is iterable
+    redmine_task_instance != ''
     and (mysql_replication_role is undefined or mysql_replication_role == 'master')
     and sync_master is undefined
   tags: redmine
