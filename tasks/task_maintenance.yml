@@ -1,4 +1,4 @@
-- include: instance_maintenance.yml
+- include_tasks: instance_maintenance.yml
   with_items: "{{ redmine_maintenance_tasks | default([]) }}"
   loop_control:
     loop_var: task

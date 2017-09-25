@@ -1,2 +1,2 @@
-- include: instance_reminder.yml
+- include_tasks: instance_reminder.yml
   when: sync_master is undefined

@@ -1,2 +1,2 @@
-- include: instance_recur-tasks.yml
+- include_tasks: instance_recur-tasks.yml
   when: sync_master is undefined

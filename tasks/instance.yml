@@ -1,19 +1,19 @@
-- include: task_helpdesk.yml
+- include_tasks: task_helpdesk.yml
   tags: helpdesk
   when: redmine_task_name == '' or redmine_task_name == 'helpdesk'
 
-- include: task_receive.yml
+- include_tasks: task_receive.yml
   tags: receive
   when: redmine_task_name == '' or redmine_task_name == 'receive'
 
-- include: task_recur-tasks.yml
+- include_tasks: task_recur-tasks.yml
   tags: recur-tasks
   when: redmine_task_name == '' or redmine_task_name == 'recur-tasks'
 
-- include: task_reminder.yml
+- include_tasks: task_reminder.yml
   tags: reminder
   when: redmine_task_name == '' or redmine_task_name == 'reminder'
 
-- include: task_maintenance.yml
+- include_tasks: task_maintenance.yml
   tags: maintenance
   when: redmine_task_name == '' or redmine_task_name == 'maintenance'

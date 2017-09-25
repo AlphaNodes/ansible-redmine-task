@@ -1,4 +1,4 @@
-- include: instance_receive.yml
+- include_tasks: instance_receive.yml
   with_items: "{{ redmine_receive_mails | default([]) }}"
   loop_control:
     loop_var: instance

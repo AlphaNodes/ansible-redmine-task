@@ -1,4 +1,4 @@
-- include: instance.yml
+- include_tasks: instance.yml
   when: >
     redmine_task_instance != ''
     and (mysql_replication_role is undefined or mysql_replication_role == 'master')
