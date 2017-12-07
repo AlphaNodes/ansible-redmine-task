@@ -24,7 +24,7 @@
   when: mails_protocol == '' or (mails_protocol != 'imap' and mails_protocol != 'pop3')
 
 - name: 'Receive mails for {{ instance.name }}'
-  shell: bash -lc "bundle exec rake redmine:email:receive_{{ mails_protocol }} host={{ mails_host }} username={{ mails_user }} password={{ mails_password }} port={{ mails_port }} {{ 'ssl=true' if mails_ssl else '' }} allow_override='{{ mails_allow_override }}'{{ '' if mails_options == '' else ' ' + mails_options }}"
+  shell: bash -lc "bundle exec rake redmine:email:receive_{{ mails_protocol }} host={{ mails_host }} username='{{ mails_user }}' password='{{ mails_password }}' port={{ mails_port }} {{ 'ssl=true' if mails_ssl else '' }} allow_override='{{ mails_allow_override }}'{{ '' if mails_options == '' else ' ' + mails_options }}"
   args:
     chdir: '{{ redmine_task_dir }}'
   become: "{{ 'true' if redmine_task_user != '' else 'false' }}"
