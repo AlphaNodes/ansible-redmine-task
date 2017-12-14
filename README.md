@@ -7,6 +7,7 @@ Run Redmine tasks for an installed redmine (rake tasks)
 - receive redmine mails
 - create recurrent tasks (https://www.redmine.org/plugins/recurring-tasks)
 - maintenance tasks (see https://www.redmine.org/projects/redmine/wiki/RedmineRake)
+- run whenever for Issue Open Date (https://github.com/centosadmin/redmine_issue_open_date)
 
 ## Dependencies
 
