@@ -10,6 +10,14 @@
   tags: recur-tasks
   when: redmine_task_name == '' or redmine_task_name == 'recur-tasks'
 
+- include_tasks: task_issue-open-date.yml
+  tags: recur-tasks
+  when: redmine_task_name == '' or redmine_task_name == 'issue-open-date'
+
+- include_tasks: task_periodictask.yml
+  tags: recur-tasks
+  when: redmine_task_name == '' or redmine_task_name == 'periodictask'
+
 - include_tasks: task_reminder.yml
   tags: reminder
   when: redmine_task_name == '' or redmine_task_name == 'reminder'
