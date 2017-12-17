@@ -6,16 +6,20 @@
   tags: receive
   when: redmine_task_name == '' or redmine_task_name == 'receive'
 
+- include_tasks: task_automation.yml
+  tags: automation
+  when: redmine_task_name == '' or redmine_task_name == 'automation'
+
 - include_tasks: task_recur-tasks.yml
   tags: recur-tasks
   when: redmine_task_name == '' or redmine_task_name == 'recur-tasks'
 
 - include_tasks: task_issue-open-date.yml
-  tags: recur-tasks
+  tags: issue-open-date
   when: redmine_task_name == '' or redmine_task_name == 'issue-open-date'
 
 - include_tasks: task_periodictask.yml
-  tags: recur-tasks
+  tags: periodictask
   when: redmine_task_name == '' or redmine_task_name == 'periodictask'
 
 - include_tasks: task_reminder.yml
