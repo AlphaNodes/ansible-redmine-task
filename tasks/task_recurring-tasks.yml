@@ -1,0 +1,2 @@
+- include_tasks: instance_recurring-tasks.yml
+  when: sync_master is undefined

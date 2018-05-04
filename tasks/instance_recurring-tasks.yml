@@ -1,7 +1,7 @@
-# tasks for https://github.com/nutso/redmine-plugin-recurring-tasks
+# task for https://github.com/centosadmin/redmine_recurring_tasks
 
 - name: Create recurrent tasks
-  shell: bash -lc "bundle exec rake redmine:recur_tasks"
+  shell: bash -lc "bundle exec rake redmine_recurring_tasks:exec"
   args:
     chdir: '{{ redmine_task_dir }}'
   become: "{{ 'true' if redmine_task_user != '' else 'false' }}"
@@ -9,8 +9,8 @@
   environment:
     RAILS_ENV: '{{ rails_env }}'
     PATH: '/usr/local/bin:/usr/bin:/bin:{{ redmine_task_dir }}/.rvm/bin'
-  register: recur_tasks
+  register: recurring_tasks
 
-- name: Output of recur_tasks
-  debug: var=recur_tasks.stdout_lines
-  when: recur_tasks.changed
+- name: Output of recurring_tasks
+  debug: var=recurring_tasks.stdout_lines
+  when: recurring_tasks.changed
