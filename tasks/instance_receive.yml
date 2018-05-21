@@ -7,6 +7,11 @@
 - set_fact: mails_allow_override="{{ instance.allow_override | default(redmine_receive_mails_allow_override) }}"
 - set_fact: mails_options="{{ instance.options | default(redmine_receive_mails_options) }}"
 
+- set_fact: issue_project="{{ ' project=' + instance.issue_project if instance.issue_project is defined else '' }}"
+- set_fact: issue_priority="{{ ' priority=' + instance.issue_priority if instance.issue_priority is defined else '' }}"
+- set_fact: issue_tracker="{{ ' tracker=' + instance.issue_tracker if instance.issue_tracker is defined else '' }}"
+- set_fact: issue_category="{{ ' category=' + instance.issue_category if instance.issue_category is defined else '' }}"
+
 - fail:
     msg: 'host is missing for {{ instance.name }}'
   when: mails_host == ''
@@ -24,7 +29,7 @@
   when: mails_protocol == '' or (mails_protocol != 'imap' and mails_protocol != 'pop3')
 
 - name: 'Receive mails for {{ instance.name }}'
-  shell: bash -lc "bundle exec rake redmine:email:receive_{{ mails_protocol }} host={{ mails_host }} username='{{ mails_user }}' password='{{ mails_password }}' port={{ mails_port }} {{ 'ssl=true' if mails_ssl else '' }} allow_override='{{ mails_allow_override }}'{{ '' if mails_options == '' else ' ' + mails_options }}"
+  shell: bash -lc "bundle exec rake redmine:email:receive_{{ mails_protocol }} host={{ mails_host }} username='{{ mails_user }}' password='{{ mails_password }}' port={{ mails_port }} {{ 'ssl=true' if mails_ssl else '' }}{{ issue_project }}{{ issue_priority }}{{ issue_tracker }}{{ issue_category }} allow_override='{{ mails_allow_override }}'{{ '' if mails_options == '' else ' ' + mails_options }}"
   args:
     chdir: '{{ redmine_task_dir }}'
   become: "{{ 'true' if redmine_task_user != '' else 'false' }}"
