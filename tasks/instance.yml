@@ -14,6 +14,10 @@
   tags: recur-tasks
   when: redmine_task_name == '' or redmine_task_name == 'recur-tasks'
 
+- include_tasks: task_rebuild-index.yml
+  tags: rebuild-index
+  when: redmine_task_name == '' or redmine_task_name == 'rebuild-index'
+
 - include_tasks: task_recurring-tasks.yml
   tags: recurring-tasks
   when: redmine_task_name == '' or redmine_task_name == 'recurring-tasks'

@@ -2,7 +2,7 @@
 ---
 
 # if defined, only this task is running
-# possible values: helpdesk, receive, recur-tasks, reminder
+# possible values: helpdesk, receive, recur-tasks, reminder, rebuild-index
 redmine_task_name: ''
 
 redmine_task_instance: redmine

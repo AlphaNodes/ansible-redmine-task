@@ -1,0 +1,2 @@
+- include_tasks: instance_rebuild-index.yml
+  when: sync_master is undefined
