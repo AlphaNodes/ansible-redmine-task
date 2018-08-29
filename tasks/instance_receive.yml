@@ -1,3 +1,4 @@
+- set_fact: no_log="{{ instance.no_log | default(redmine_receive_mails_no_log) }}"
 - set_fact: mails_host="{{ instance.host | default(redmine_receive_mails_host) }}"
 - set_fact: mails_user="{{ instance.user | default(redmine_receive_mails_user) }}"
 - set_fact: mails_password="{{ instance.password | default(redmine_receive_mails_password) }}"
@@ -37,7 +38,7 @@
   become_user: '{{ redmine_task_user | default(omit) }}'
   register: receive
   changed_when: receive.stdout_lines | length
-  no_log: yes
+  no_log: '{{ no_log }}'
   environment:
     RAILS_ENV: '{{ rails_env }}'
     PATH: '/usr/local/bin:/usr/bin:/bin:{{ redmine_task_dir }}/.rvm/bin'
