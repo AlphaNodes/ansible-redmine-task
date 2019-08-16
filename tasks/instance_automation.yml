@@ -2,7 +2,7 @@
   shell: bash -lc "bundle exec rake redmine:automation:jobs"
   args:
     chdir: '{{ redmine_task_dir }}'
-  become: "{{ 'true' if redmine_task_user != '' else 'false' }}"
+  become: "{{ true if redmine_task_user != '' else false }}"
   become_user: '{{ redmine_task_user | default(omit) }}'
   environment:
     RAILS_ENV: '{{ rails_env }}'

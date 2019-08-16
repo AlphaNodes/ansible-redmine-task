@@ -34,7 +34,7 @@
   shell: bash -lc "bundle exec rake redmine:email:receive_{{ mails_protocol }} host={{ mails_host }} username='{{ mails_user }}' password='{{ mails_password }}' port={{ mails_port }} {{ 'ssl=true' if mails_ssl else '' }}{{ issue_project }}{{ issue_priority }}{{ issue_tracker }}{{ issue_status }}{{ issue_category }} allow_override='{{ mails_allow_override }}'{{ '' if mails_options == '' else ' ' + mails_options }}"
   args:
     chdir: '{{ redmine_task_dir }}'
-  become: "{{ 'true' if redmine_task_user != '' else 'false' }}"
+  become: "{{ true if redmine_task_user != '' else false }}"
   become_user: '{{ redmine_task_user | default(omit) }}'
   register: receive
   changed_when: receive.stdout_lines | length

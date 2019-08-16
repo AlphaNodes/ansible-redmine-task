@@ -2,7 +2,7 @@
   shell: bash -lc "bundle exec rake redmine:send_reminders days={{ redmine_task_reminder_day }}"
   args:
     chdir: '{{ redmine_task_dir }}'
-  become: "{{ 'true' if redmine_task_user != '' else 'false' }}"
+  become: "{{ true if redmine_task_user != '' else false }}"
   become_user: '{{ redmine_task_user | default(omit) }}'
   register: reminder
   changed_when: reminder.stdout_lines | length

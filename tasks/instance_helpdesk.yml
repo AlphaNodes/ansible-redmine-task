@@ -9,7 +9,7 @@
 - name: Poll helpdesk mails
   uri:
     url: "{{ redmine_helpdesk_mailer_url }}/helpdesk_mailer/get_mail?key={{ redmine_helpdesk_mailer_key }}"
-    force_basic_auth: "{{ 'true' if redmine_helpdesk_mailer_auth_user is defined else 'false' }}"
+    force_basic_auth: "{{ true if redmine_helpdesk_mailer_auth_user is defined else false }}"
     user: '{{ redmine_helpdesk_mailer_auth_user | default(omit) }}'
     password: '{{ redmine_helpdesk_mailer_auth_password | default(omit) }}'
     return_content: yes
