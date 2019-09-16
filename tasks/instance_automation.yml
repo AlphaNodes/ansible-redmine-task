@@ -1,5 +1,5 @@
 - name: Run automation jobs
-  shell: bash -lc "bundle exec rake redmine:automation:jobs"
+  shell: bash -lc "bundle exec rake redmine:automation:{{ redmine_automation_task }}"
   args:
     chdir: '{{ redmine_task_dir }}'
   become: "{{ true if redmine_task_user != '' else false }}"

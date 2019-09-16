@@ -9,6 +9,8 @@ redmine_task_instance: redmine
 redmine_task_user: '{{ redmine_task_instance }}'
 redmine_task_dir: '/srv/{{ redmine_task_instance }}'
 
+redmine_automation_task: jobs
+
 # URL to Redmine (without backslash)
 redmine_helpdesk_mailer_url: ''
 # Enable WS for incoming emails and genertate API key
