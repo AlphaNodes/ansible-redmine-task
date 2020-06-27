@@ -7,9 +7,10 @@ Run Redmine tasks for an installed redmine (rake tasks)
 - receive redmine mails
 - create recurrent tasks (https://www.redmine.org/plugins/recurring-tasks)
 - create recurring tasks (https://github.com/centosadmin/redmine_recurring_tasks)
+- run automation tasks (with AlphaNodes redmine_automation)
 - maintenance tasks (see https://www.redmine.org/projects/redmine/wiki/RedmineRake)
 - run whenever for Issue Open Date (https://github.com/centosadmin/redmine_issue_open_date)
-- rebuild search index (for PostgreSQL) (https://github.com/AlphaNodes/redmine_postgresql_search)
+- update or rebuild search index (for PostgreSQL) (https://github.com/AlphaNodes/redmine_postgresql_search)
 
 ## Dependencies
 

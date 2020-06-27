@@ -1,5 +1,5 @@
-- include_tasks: instance_receive.yml
+- include_tasks: task_receive_instance.yml
   loop: "{{ redmine_receive_mails | default([]) }}"
   loop_control:
     loop_var: instance
-  when: instance.name is defined and instance.name != '' and sync_master is undefined
+  when: instance.name is defined and instance.name != ''

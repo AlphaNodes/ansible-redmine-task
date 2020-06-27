@@ -1,6 +1,24 @@
-- include_tasks: instance.yml
+- name: Check redmine_task_instance
+  fail:
+    msg: 'redmine_task_instance is required'
+  when: redmine_task_instance == ''
+  tags: redmine
+
+- name: Check redmine_task_name
+  fail:
+    msg: 'redmine_task_name is required'
+  when: redmine_task_name == ''
+  tags: redmine
+
+- name: Check if redmine_task_name is valid
+  fail:
+    msg: 'redmine_task_name is not support. See vars/main.yml for supported tasks'
+  when: redmine_task_name not in redmine_available_tasks
+  tags: redmine
+
+- name: Run task
+  include_tasks: 'task_{{ redmine_task_name }}.yml'
   when: >
-    redmine_task_instance != ''
-    and (mysql_replication_role is undefined or mysql_replication_role == 'master')
+    (mysql_replication_role is undefined or mysql_replication_role == 'master')
     and sync_master is undefined
   tags: redmine

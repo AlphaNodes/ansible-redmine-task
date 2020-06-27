@@ -1,8 +1,7 @@
 # defaults file for redmine_tasks
 ---
 
-# if defined, only this task is running
-# possible values: helpdesk, receive, recur-tasks, reminder, rebuild-index
+# possible values: see vars/main.yml
 redmine_task_name: ''
 
 redmine_task_instance: redmine

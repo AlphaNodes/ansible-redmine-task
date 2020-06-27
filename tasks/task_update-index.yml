@@ -1,7 +1,7 @@
 # tasks for https://github.com/AlphaNodes/redmine_postgresql_search
 
-- name: Rebuild search index
-  shell: bash -lc "bundle exec rake redmine_postgresql_search:rebuild_index"
+- name: Update search index
+  shell: bash -lc "bundle exec rake redmine_postgresql_search:update_index"
   args:
     chdir: '{{ redmine_task_dir }}'
   become: "{{ true if redmine_task_user != '' else false }}"
@@ -9,8 +9,8 @@
   environment:
     RAILS_ENV: '{{ rails_env }}'
     PATH: '/usr/local/bin:/usr/bin:/bin:{{ redmine_task_dir }}/.rvm/bin'
-  register: rebuild_index
+  register: update_index
 
-- name: Output of rebuild_index
-  debug: var=rebuild_index.stdout_lines
-  when: rebuild_index.changed
+- name: Output of update_index
+  debug: var=update_index.stdout_lines
+  when: update_index.changed

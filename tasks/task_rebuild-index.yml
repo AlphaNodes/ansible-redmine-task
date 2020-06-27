@@ -1,2 +1,16 @@
-- include_tasks: instance_rebuild-index.yml
-  when: sync_master is undefined
+# tasks for https://github.com/AlphaNodes/redmine_postgresql_search
+
+- name: Rebuild search index
+  shell: bash -lc "bundle exec rake redmine_postgresql_search:rebuild_index"
+  args:
+    chdir: '{{ redmine_task_dir }}'
+  become: "{{ true if redmine_task_user != '' else false }}"
+  become_user: '{{ redmine_task_user | default(omit) }}'
+  environment:
+    RAILS_ENV: '{{ rails_env }}'
+    PATH: '/usr/local/bin:/usr/bin:/bin:{{ redmine_task_dir }}/.rvm/bin'
+  register: rebuild_index
+
+- name: Output of rebuild_index
+  debug: var=rebuild_index.stdout_lines
+  when: rebuild_index.changed

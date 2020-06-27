@@ -1,2 +1,15 @@
-- include_tasks: instance_periodictask.yml
-  when: sync_master is undefined
+- name: Run periodictask
+  shell: bash -lc "bundle exec rake redmine:check_periodictasks"
+  args:
+    chdir: '{{ redmine_task_dir }}'
+  become: "{{ true if redmine_task_user != '' else false }}"
+  become_user: '{{ redmine_task_user | default(omit) }}'
+  register: periodictask
+  changed_when: periodictask.stdout_lines | length
+  environment:
+    RAILS_ENV: '{{ rails_env }}'
+    PATH: '/usr/local/bin:/usr/bin:/bin:{{ redmine_task_dir }}/.rvm/bin'
+
+- name: Output of periodictask
+  debug: var=periodictask.stdout_lines
+  when: periodictask.changed

@@ -1,5 +1,4 @@
-- include_tasks: instance_maintenance.yml
+- include_tasks: task_maintenance_instance.yml
   loop: "{{ redmine_maintenance_tasks | default([]) }}"
   loop_control:
     loop_var: task
-  when: sync_master is undefined
