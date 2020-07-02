@@ -2,6 +2,7 @@ redmine_available_tasks:
   - automation
   - helpdesk
   - issue-open-date
+  - ldap-sync
   - maintenance
   - rebuild-index
   - receive

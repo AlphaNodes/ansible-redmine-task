@@ -55,3 +55,6 @@ redmine_maintenance_tasks:
   - 'redmine:attachments:prune'
   - 'redmine:tokens:prune'
 #  - 'redmine:watchers:prune'
+
+# see https://github.com/tainewoo/redmine_ldap_sync#rake-tasks
+redmine_ldap_sync_rake_task: sync_all

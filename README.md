@@ -11,6 +11,7 @@ Run Redmine tasks for an installed redmine (rake tasks)
 - maintenance tasks (see https://www.redmine.org/projects/redmine/wiki/RedmineRake)
 - run whenever for Issue Open Date (https://github.com/centosadmin/redmine_issue_open_date)
 - update or rebuild search index (for PostgreSQL) (https://github.com/AlphaNodes/redmine_postgresql_search)
+- run ldap-sync rake task
 
 ## Dependencies
 

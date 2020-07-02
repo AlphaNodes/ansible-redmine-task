@@ -1,0 +1,16 @@
+# tasks for https://github.com/tainewoo/redmine_ldap_sync
+
+- name: Rebuild ldap-sync
+  shell: bash -lc "bundle exec rake redmine:plugins:ldap_sync:{{ redmine_ldap_sync_rake_task }}"
+  args:
+    chdir: '{{ redmine_task_dir }}'
+  become: "{{ true if redmine_task_user != '' else false }}"
+  become_user: '{{ redmine_task_user | default(omit) }}'
+  environment:
+    RAILS_ENV: '{{ rails_env }}'
+    PATH: '/usr/local/bin:/usr/bin:/bin:{{ redmine_task_dir }}/.rvm/bin'
+  register: ldap_sync
+
+- name: Output of ldap-sync
+  debug: var=ldap_sync.stdout_lines
+  when: ldap_sync.changed
