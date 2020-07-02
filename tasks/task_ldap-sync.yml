@@ -1,6 +1,6 @@
 # tasks for https://github.com/tainewoo/redmine_ldap_sync
 
-- name: Rebuild ldap-sync
+- name: Run ldap-sync
   shell: bash -lc "bundle exec rake redmine:plugins:ldap_sync:{{ redmine_ldap_sync_rake_task }}"
   args:
     chdir: '{{ redmine_task_dir }}'
