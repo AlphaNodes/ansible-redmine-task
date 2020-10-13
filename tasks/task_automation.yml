@@ -6,6 +6,7 @@
   become_user: '{{ redmine_task_user | default(omit) }}'
   environment:
     RAILS_ENV: '{{ rails_env }}'
+    LOG_TO_STDOUT: '1'
     PATH: '/usr/local/bin:/usr/bin:/bin:{{ redmine_task_dir }}/.rvm/bin'
   register: automation_jobs
 
