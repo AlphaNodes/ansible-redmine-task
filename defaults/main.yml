@@ -6,7 +6,7 @@ redmine_task_name: ''
 
 redmine_task_instance: redmine
 redmine_task_user: '{{ redmine_task_instance }}'
-redmine_task_dir: '/srv/{{ redmine_task_instance }}'
+redmine_task_dir: '/srv/{{ redmine_task_instance }}/redmine'
 
 redmine_automation_task: jobs
 
