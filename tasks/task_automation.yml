@@ -1,4 +1,4 @@
-- name: Run automation jobs
+- name: Run automation jobs for {{ redmine_task_instance }}
   shell: bash -lc "bundle exec rake redmine:automation:{{ redmine_automation_task }}"
   args:
     chdir: '{{ redmine_task_dir }}'
@@ -10,6 +10,6 @@
     PATH: '/usr/local/bin:/usr/bin:/bin:{{ redmine_task_dir }}/.rvm/bin'
   register: automation_jobs
 
-- name: Output of automation jobs
+- name: Output of automation jobs for {{ redmine_task_instance }}
   debug: var=automation_jobs.stdout_lines
   when: automation_jobs.changed
